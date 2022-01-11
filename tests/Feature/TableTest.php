@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class TableTest extends TestCase
@@ -15,7 +13,12 @@ class TableTest extends TestCase
      */
     public function testTableCount()
     {
-        $this->assertDatabaseCount('tables',15);
+        $this->assertDatabaseCount('tables', 15);
+    }
 
+    public function testApiTables()
+    {
+        $response = $this->get('/api/tables');
+        $response->assertStatus(200)->assertJsonCount(15);;
     }
 }

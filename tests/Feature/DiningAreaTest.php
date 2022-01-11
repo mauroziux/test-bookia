@@ -17,4 +17,10 @@ class DiningAreaTest extends TestCase
         $this->assertDatabaseHas('dining_areas', ['name' => 'Outdoor']);
         $this->assertDatabaseHas('dining_areas', ['name' => 'Outdoor Terrace']);
     }
+
+    public function testApiDiningArea()
+    {
+        $response = $this->get('/api/dining-areas');
+        $response->assertStatus(200)->assertJsonCount(3);
+    }
 }

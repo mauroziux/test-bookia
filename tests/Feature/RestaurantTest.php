@@ -16,4 +16,10 @@ class RestaurantTest extends TestCase
         $this->assertDatabaseHas('restaurants', ['name' => 'green restaurant']);
         $this->assertDatabaseHas('restaurants', ['name' => 'blue restaurant']);
     }
+
+    public function testApiRestaurants()
+    {
+        $response = $this->get('/api/restaurants');
+        $response->assertStatus(200)->assertJsonCount(2);;
+    }
 }
